@@ -1,0 +1,37 @@
+﻿@model WebFirmManagment.Models.ViewModels.EmployeeSearch
+@using WebFirmManagment.Models.Entities
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Search", "Employees",FormMethod.Post))
+{
+    <div class="form-group">
+        <label>Name: </label>
+        @Html.EditorFor(m => Model.NameString, new { htmlAttribues = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        <label>Workplace: </label>
+        @Html.EditorFor(m => Model.WorkplaceString, new { htmlAttribues = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        <label>Hobby: </label>
+        @Html.EditorFor(m => Model.HobbyString, new { htmlAttribues = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        <label>Gender: </label>
+        @Html.EditorFor(m => Model.GenderString, new { htmlAttribues = new { @class = "form-control" } });
+    </div>
+    <input type="submit" value="Search" />
+}
+
+@if (Model.SearchedEmployees.Count != 0)
+{
+    @Html.Partial("_searchedEmployees", Model.SearchedEmployees)
+}
+else
+{
+    <p>No Users Found</p>
+}
+
